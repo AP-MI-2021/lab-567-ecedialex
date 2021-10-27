@@ -42,7 +42,7 @@ def update(lst_vanzari, new_vanzare):
     """
     new_vanzari = []
     for vanzare in lst_vanzari:
-        if get_id(vanzare) == get_id(new_vanzare):
+        if get_id(vanzare) != get_id(new_vanzare):
             new_vanzari.append(vanzare)
         else:
             new_vanzari.append(new_vanzare)
