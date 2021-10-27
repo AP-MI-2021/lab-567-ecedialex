@@ -1,4 +1,4 @@
-from Domain import creeaza_vanzare, get_id
+from Domain.vanzare import creeaza_vanzare, get_id
 from Logic.crud import create, read, update, delete
 
 
@@ -10,7 +10,6 @@ def get_data():
         creeaza_vanzare(4, 'Enigma Otiliei', 'Roman', 12, 'silver'),
         creeaza_vanzare(5, 'Baltagul', 'Roman', 5, 'none'),
     ]
-
 
 def test_create():
 

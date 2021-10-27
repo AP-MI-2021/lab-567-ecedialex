@@ -1,4 +1,4 @@
-from Domain import creeaza_vanzare, get_id
+from Domain.vanzare import creeaza_vanzare, get_id
 
 
 def create(lst_vanzari,

@@ -1,6 +1,8 @@
-from Domain import get_str, creeaza_vanzare
+from Domain.vanzare import get_str, creeaza_vanzare
 from Logic.crud import create, update, delete
-from Logic.discount import discount
+from Logic.discount import aplicare_discount
+from Logic.modificare_gen import modificare_gen
+
 
 def show_menu():
     print('1.CRUD')
@@ -71,9 +73,9 @@ def run_ui(vanzari):
         if opt == '1':
             vanzari=handle_crud(vanzari)
         elif opt == '2':
-            vanzari=discount(vanzari)
+            vanzari=aplicare_discount(vanzari)
         elif opt == '3':
-            handle_show_all(vanzari)
+            vanzari=modificare_gen(vanzari)
         elif opt == 'x':
             break
         else:

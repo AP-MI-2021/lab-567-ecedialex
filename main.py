@@ -1,7 +1,6 @@
 from Tests.test_crud import test_create, test_read, test_crud, get_data
 from UserInterface.console import run_ui
 
-
 def main():
     vanzari=[]
     vanzari=get_data()
