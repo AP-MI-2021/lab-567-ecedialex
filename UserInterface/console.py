@@ -46,7 +46,11 @@ def handle_delete(vanzari):
     vanzari= delete(vanzari,id_vanzare)
     print('Stergerea a fost efectuata cu succes.')
     return vanzari
-
+def handle_modif_gen(vanzari):
+    titlu = input(f"Introduceti titlul cartii pentru care se va schimba genul:")
+    new_gen = input(f"Introduceti noul gen al cartii {titlu}:")
+    vanzari=modificare_gen(vanzari,titlu,new_gen)
+    return vanzari
 
 def handle_crud(vanzari):
     while True:
@@ -75,7 +79,7 @@ def run_ui(vanzari):
         elif opt == '2':
             vanzari=aplicare_discount(vanzari)
         elif opt == '3':
-            vanzari=modificare_gen(vanzari)
+            vanzari=handle_modif_gen(vanzari)
         elif opt == 'x':
             break
         else:

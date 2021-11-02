@@ -1,4 +1,4 @@
-def creeaza_vanzare(id_vanzare, titlu, gen, pret, tip_client):
+def creeaza_vanzare(id_vanzare,titlu,gen,pret,tip_client):
     """
     Creeaza o vanzare.
     :param id_vanzare: id-ul vanzarii, unic
@@ -25,7 +25,6 @@ def get_id(vanzare):
     """
     return vanzare[0]
 
-
 def get_titlu(vanzare):
     """
     Getter pentru titlul cartii
@@ -33,7 +32,6 @@ def get_titlu(vanzare):
     :return: titlul vanzarii date ca parametru
     """
     return vanzare[1]
-
 
 def get_gen(vanzare):
     """
@@ -43,7 +41,6 @@ def get_gen(vanzare):
     """
     return vanzare[2]
 
-
 def get_pret(vanzare):
     """
     Getter pentru pretul cartii
@@ -52,7 +49,6 @@ def get_pret(vanzare):
     """
     return vanzare[3]
 
-
 def get_reducere(vanzare):
     """
     Getter pentru discount-ul vanzarii
@@ -60,7 +56,6 @@ def get_reducere(vanzare):
     :return: tipul reducerii vanzarii date ca parametru
     """
     return vanzare[4]
-
 
 def get_str(vanzare):
     return f'Vanzarea cu id-ul {get_id(vanzare)} a cartii {get_titlu(vanzare)} de genul {get_gen(vanzare)} a fost realizata cu pretul de {get_pret(vanzare)} catre un client {get_reducere(vanzare)}'
