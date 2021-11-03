@@ -42,7 +42,7 @@ def clc(vanzari):
             print("Pentru a adauga o vanzare scrie :  Add ,'id' , 'titlu' , 'gen' , 'pret' , 'reducere'.")
             print("Pentru a sterge o vanzare scrie : Delete , 'id'")
             print("Pentru a afisa toate vanzarile scrie : Show_all ")
-            print('Back: b')
+            print('Exit: b')
         else:
             option=option.split(',')
             if option[0] == 'Add':
