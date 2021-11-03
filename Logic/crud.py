@@ -6,11 +6,11 @@ def create(lst_vanzari,
     """
     Creeaza o lista de vanzari
     :param lst_vanzari: lista de vanzari
-    :param id_vanzare:
-    :param titlu:
-    :param gen:
-    :param pret:
-    :param tip_client:
+    :param id_vanzare: id-ul vanzarii
+    :param titlu: titlul cartii vandute
+    :param gen: genul cartii vandute
+    :param pret: pretul cartii
+    :param tip_client: tipul de client
     :return: O noua lista formata din lst_vanzari si noua vanzare adaugata
     """
     vanzare = creeaza_vanzare(id_vanzare, titlu, gen, pret, tip_client)
