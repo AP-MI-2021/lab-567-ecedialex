@@ -16,9 +16,12 @@ def handle_add(vanzari,option):
         print('Eroare',eroare)
 def handle_delete(vanzari,option):
     try:
-        id=int(option[1])
-        vanzari=delete(vanzari,id)
-        return vanzari
+        if len(option) == 2:
+            id=int(option[1])
+            vanzari=delete(vanzari,id)
+            return vanzari
+        else:
+            print("Eroare!")
     except ValueError as eroare:
         print('Eroare ',eroare)
 def handle_show_all(vanzari,option):
