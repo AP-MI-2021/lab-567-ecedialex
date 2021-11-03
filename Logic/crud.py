@@ -56,6 +56,8 @@ def delete(lst_vanzari, id_vanzare):
     :param id_vanzare: id-ul vanzarii ce se va sterge
     :return: o lista de vanzari fara vanzara cu id-ul id_vanzare
     """
+    if read(lst_vanzari, id_vanzare) is None:
+        raise ValueError(f'Nu xista o vanzare cu id-ul {id_vanzare} pe care sa o stergem.')
     new_vanzari = []
     for vanzare in lst_vanzari:
         if get_id(vanzare) != id_vanzare:

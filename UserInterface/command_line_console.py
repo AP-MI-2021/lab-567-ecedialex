@@ -3,12 +3,15 @@ from Logic.crud import create, delete
 
 def handle_add(vanzari,option):
     try:
-        id=int(option[1])
-        titlu=option[2]
-        gen=option[3]
-        pret=int(option[4])
-        reducere=option[5]
-        return create(vanzari,id,titlu,gen,pret,reducere)
+        if len(option) == 6:
+            id=int(option[1])
+            titlu=option[2]
+            gen=option[3]
+            pret=int(option[4])
+            reducere=option[5]
+            return create(vanzari,id,titlu,gen,pret,reducere)
+        else:
+            print("Eroare!")
     except ValueError as eroare:
         print('Eroare',eroare)
 def handle_delete(vanzari,option):
