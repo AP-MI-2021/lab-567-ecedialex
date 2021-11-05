@@ -3,15 +3,15 @@ from Tests.test_discount import test_discount
 from Tests.test_modificare_gen import test_modificare_gen
 from UserInterface.command_line_console import clc
 from UserInterface.console import run_ui
+from UserInterface.console2 import run_ui2
+
 
 def main():
     vanzari=[]
     vanzari=get_data()
     vanzari=run_ui(vanzari)
 def main2():
-    vanzari=[]
-    vanzari=get_data()
-    vanzari=clc(vanzari)
+    vanzari=run_ui2()
 if __name__ == '__main__':
     test_crud()
     test_discount()

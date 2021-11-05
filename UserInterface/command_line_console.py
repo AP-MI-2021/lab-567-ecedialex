@@ -1,6 +1,11 @@
 from Domain.vanzare import get_str
 from Logic.crud import create, delete
-
+def print_menu():
+    print('Instructiunile sunt separate prin: [;] iar termenii prin: [,]')
+    print("Pentru a adauga o vanzare scrie: 'add','id','titlu','gen','pret','reducere'.")
+    print("Pentru a sterge o vanzare scrie: 'del','id'")
+    print("Pentru a afisa toate vanzarile scrie: 'sa'")
+    print("Pentru a inchide programul scrie: 'x'")
 def handle_add(vanzari,option):
     try:
         if len(option) == 6:
@@ -25,31 +30,30 @@ def handle_delete(vanzari,option):
     except ValueError as eroare:
         print('Eroare ',eroare)
 def handle_show_all(vanzari,option):
-    try:
-        if len(option) != 1:
-            print('Eroare!')
-        else:
-            for vanzare in vanzari:
-                print(get_str(vanzare))
-    except KeyError as error:
-        print('Eroare: ',error)
+    for vanzare in vanzari:
+        print(get_str(vanzare))
 def clc(vanzari):
-    while True:
-        print('Scrie menu pentru ajutor.')
-        option=input()
-        if option == 'menu':
-            print('Instructiunile sunt despartite prin , ')
-            print("Pentru a adauga o vanzare scrie :  Add ,'id' , 'titlu' , 'gen' , 'pret' , 'reducere'.")
-            print("Pentru a sterge o vanzare scrie : Delete , 'id'")
-            print("Pentru a afisa toate vanzarile scrie : Show_all ")
-            print('Exit: b')
-        else:
-            option=option.split(',')
-            if option[0] == 'Add':
-                vanzari=handle_add(vanzari,option)
-            elif option[0] == 'Delete':
-                vanzari=handle_delete(vanzari,option)
-            elif option[0] == 'Show_all':
-                handle_show_all(vanzari,option)
-            elif option[0]=='b':
-                break
+
+        while True:
+            print_menu()
+            lista=input()
+            comenzi=lista.split(';')
+            for comanda in comenzi:
+                param=comanda.split(',')
+                if param[0] == 'sa':
+                    handle_show_all(vanzari,comanda)
+                elif param[0] == 'del':
+                    vanzari = handle_delete(vanzari,param)
+                elif param[0] == 'x':
+                    return 0,print("Program inchis")
+                elif param[0] == 'add':
+                    vanzari = handle_add(vanzari,param)
+                else:
+                    print("Optiune invalida.")
+
+def main():
+    vanzari=[]
+    clc(vanzari)
+
+if __name__ == '__main__':
+    main()
