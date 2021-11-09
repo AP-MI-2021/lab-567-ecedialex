@@ -61,8 +61,7 @@ def handle_delete(vanzari):
         print('Stergerea a fost efectuata cu succes.')
         return vanzari
     except ValueError as error:
-        print('Eroare!', error)
-    return vanzari
+        print('Eroare!',error)
 
 def handle_modif_gen(vanzari):
     titlu = input(f"Introduceti titlul cartii pentru care se va schimba genul:")
