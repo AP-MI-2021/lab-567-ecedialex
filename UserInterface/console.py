@@ -2,6 +2,9 @@ from Domain.vanzare import get_str, creeaza_vanzare
 from Logic.crud import create, update, delete
 from Logic.discount import aplicare_discount
 from Logic.modificare_gen import modificare_gen
+from Logic.modify_min_price_each_genre import genres_list, min_price_by_genre
+from Logic.sort_ascending import sort_ascending
+from Logic.titles_count_each_genre import distinct_titles
 from UserInterface.command_line_console import clc
 
 
@@ -88,6 +91,26 @@ def handle_crud(vanzari):
     return vanzari
 def handle_console(vanzari):
     return clc(vanzari)
+
+def handle_sort_ascending(vanzari):
+    vanzari_aranjate=sort_ascending(vanzari)
+
+    return vanzari_aranjate
+
+
+def handle_min_price(vanzari):
+    genuri=genres_list(vanzari)
+    preturi_minime=min_price_by_genre(vanzari)
+    for i in range(0,len(genuri)):
+        print(f'Genul {genuri[i]} are pretul minim de {preturi_minime[i]}.')
+
+
+def handle_titluri_gen(vanzari):
+    nt,g=distinct_titles(vanzari)
+    for i in range(0,len(nt)):
+        print(f'Genul {g[i]} are {nt[i]} titluri.')
+
+
 def run_ui(vanzari):
     while True:
         show_menu()
@@ -99,9 +122,15 @@ def run_ui(vanzari):
         elif opt == '3':
             vanzari=handle_modif_gen(vanzari)
         elif opt == '4':
-            vanzari = handle_delete(vanzari)
+            handle_min_price(vanzari)
+        elif opt == '5':
+            vanzari=handle_sort_ascending(vanzari)
+        elif opt == '6':
+            handle_titluri_gen(vanzari)
         elif opt == '8':
             vanzari=handle_console(vanzari)
+        elif opt == 'a':
+            handle_show_all(vanzari)
         elif opt == 'x':
             break
         else:

@@ -8,7 +8,7 @@ def test_titles_count_each_genre():
     nt,g= distinct_titles(vanzari)
     assert nt[0] == 1
     assert g[0] == 'Basm'
-    assert nt[1] == 2
+    assert nt[1] == 1
     assert g[1] == 'Nuvela'
     assert nt[2] == 3
     assert g[2] == 'Roman'
