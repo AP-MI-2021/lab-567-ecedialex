@@ -1,6 +1,4 @@
 from Domain.vanzare import get_gen, get_pret
-from Tests.test_crud import get_data
-
 
 
 def genres_list(vanzari):

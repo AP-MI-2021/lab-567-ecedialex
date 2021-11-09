@@ -6,11 +6,10 @@ def do_undo(undo_list : list ,redo_list : list,current_list : list):
     :return:
     """
     if undo_list:
-        top_undo=undo_list.pop()
         redo_list.append(current_list)
-        return top_undo
-    else:
-        return None
+        return undo_list.pop()
+
+    return None
 def do_redo(undo_list : list ,redo_list : list,current_list : list):
     """
 
@@ -22,5 +21,5 @@ def do_redo(undo_list : list ,redo_list : list,current_list : list):
         top_redo=redo_list.pop()
         undo_list.append(current_list)
         return top_redo
-    else:
-        return None
+
+    return None

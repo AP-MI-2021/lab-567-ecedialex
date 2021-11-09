@@ -5,6 +5,8 @@ def modificare_gen(lst_vanzari,titlu,new_gen,
                    undo_list,redo_list):
     """
     Modifica genul unei carti cu titlul dat
+    :param redo_list: lista redo
+    :param undo_list: lista undo
     :param lst_vanzari: lista vanzarilor
     :param titlu: titlul cartii pentru care se va schimba genul
     :return: lista cu genul modificat

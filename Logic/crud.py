@@ -6,6 +6,8 @@ def create(lst_vanzari,
            undo_list,redo_list):
     """
     Creeaza o lista de vanzari
+    :param redo_list: lista redo
+    :param undo_list: lista undo
     :param lst_vanzari: lista de vanzari
     :param id_vanzare: id-ul vanzarii
     :param titlu: titlul cartii vandute
@@ -40,9 +42,12 @@ def read(lst_vanzari, id_vanzare=None):
     return lst_vanzari
 
 
-def update(lst_vanzari, new_vanzare,undo_list,redo_list):
+def update(lst_vanzari, new_vanzare,
+           undo_list,redo_list):
     """
     Actualizeaza o vanzare
+    :param redo_list: lista redo
+    :param undo_list: lista undo
     :param lst_vanzari: lista de vanzari
     :param new_vanzare: vanzarea care se va actualiza - id-ul trebuie sa fie unul existent
     :return: o lista cu vanzarea actualizata
@@ -60,9 +65,12 @@ def update(lst_vanzari, new_vanzare,undo_list,redo_list):
     return new_vanzari
 
 
-def delete(lst_vanzari, id_vanzare,undo_list,redo_list):
+def delete(lst_vanzari, id_vanzare,
+           undo_list,redo_list):
     """
     Sterge o vanzare din lst
+    :param redo_list: lista undo
+    :param undo_list: lista redo
     :param lst_vanzari: lista cu toate vanzarile
     :param id_vanzare: id-ul vanzarii ce se va sterge
     :return: o lista de vanzari fara vanzara cu id-ul id_vanzare
