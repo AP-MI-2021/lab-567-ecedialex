@@ -19,12 +19,15 @@ def discount_gold(price):
     discount = price - (price*0.10)
     return discount
 
-def aplicare_discount(lst_vanzari):
+def aplicare_discount(lst_vanzari,undo_list,redo_list):
     """
     Modifica pretul vanzarilor dupa tipul de client
     :param lst_vanzari: lista vanzarilor
     :return: lista vanzarilor cu preturile actualizate dupa aplicarea reducerii
     """
+    undo_list.append(lst_vanzari)
+    redo_list.clear()
+
     for vanzare in lst_vanzari:
         id=get_id(vanzare)
         titlu=get_titlu(vanzare)
@@ -32,7 +35,7 @@ def aplicare_discount(lst_vanzari):
         pret=get_pret(vanzare)
         reducere=get_reducere(vanzare)
         if reducere == 'silver':
-            lst_vanzari = update(lst_vanzari,creeaza_vanzare(id,titlu,gen,discount_silver(pret),reducere))
+            lst_vanzari = update(lst_vanzari,creeaza_vanzare(id,titlu,gen,discount_silver(pret),reducere),[],[])
         if reducere == 'gold':
-            lst_vanzari = update(lst_vanzari, creeaza_vanzare(id, titlu, gen, discount_gold(pret), reducere))
+            lst_vanzari = update(lst_vanzari, creeaza_vanzare(id, titlu, gen, discount_gold(pret), reducere),[],[])
     return lst_vanzari

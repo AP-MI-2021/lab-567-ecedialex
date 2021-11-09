@@ -1,4 +1,4 @@
-def do_undo(undo_list : list ,redo_list : list):
+def do_undo(undo_list : list ,redo_list : list,current_list : list):
     """
 
     :param undo_list:
@@ -7,11 +7,11 @@ def do_undo(undo_list : list ,redo_list : list):
     """
     if undo_list:
         top_undo=undo_list.pop()
-        redo_list.append(top_undo)
+        redo_list.append(current_list)
         return top_undo
     else:
-        raise ValueError("No more undo.")
-def do_redo(undo_list : list ,redo_list : list):
+        return None
+def do_redo(undo_list : list ,redo_list : list,current_list : list):
     """
 
     :param undo_list:
@@ -20,7 +20,7 @@ def do_redo(undo_list : list ,redo_list : list):
     """
     if redo_list:
         top_redo=redo_list.pop()
-        undo_list.append(top_redo)
+        undo_list.append(current_list)
         return top_redo
     else:
-        raise ValueError("No more redo.")
+        return None

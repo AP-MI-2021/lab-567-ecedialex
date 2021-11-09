@@ -2,7 +2,8 @@ from Domain.vanzare import creeaza_vanzare, get_id
 
 
 def create(lst_vanzari,
-           id_vanzare, titlu, gen, pret, tip_client):
+           id_vanzare, titlu, gen, pret, tip_client,
+           undo_list,redo_list):
     """
     Creeaza o lista de vanzari
     :param lst_vanzari: lista de vanzari
@@ -13,7 +14,13 @@ def create(lst_vanzari,
     :param tip_client: tipul de client
     :return: O noua lista formata din lst_vanzari si noua vanzare adaugata
     """
+
+
     vanzare = creeaza_vanzare(id_vanzare, titlu, gen, pret, tip_client)
+
+    undo_list.append(lst_vanzari)
+    redo_list.clear()
+
     return lst_vanzari + [vanzare]
 
 
@@ -33,7 +40,7 @@ def read(lst_vanzari, id_vanzare=None):
     return lst_vanzari
 
 
-def update(lst_vanzari, new_vanzare):
+def update(lst_vanzari, new_vanzare,undo_list,redo_list):
     """
     Actualizeaza o vanzare
     :param lst_vanzari: lista de vanzari
@@ -46,10 +53,14 @@ def update(lst_vanzari, new_vanzare):
             new_vanzari.append(vanzare)
         else:
             new_vanzari.append(new_vanzare)
+
+    undo_list.append(lst_vanzari)
+    redo_list.clear()
+
     return new_vanzari
 
 
-def delete(lst_vanzari, id_vanzare):
+def delete(lst_vanzari, id_vanzare,undo_list,redo_list):
     """
     Sterge o vanzare din lst
     :param lst_vanzari: lista cu toate vanzarile
@@ -60,4 +71,8 @@ def delete(lst_vanzari, id_vanzare):
     for vanzare in lst_vanzari:
         if get_id(vanzare) != id_vanzare:
             new_vanzari.append(vanzare)
+
+    undo_list.append(lst_vanzari)
+    redo_list.clear()
+
     return new_vanzari

@@ -13,7 +13,7 @@ def get_data():
 
 def test_discount():
     vanzari=get_data()
-    new_vanzari=aplicare_discount(vanzari)
+    new_vanzari=aplicare_discount(vanzari,[],[])
     for i in range (0,len(vanzari)):
         if get_reducere(vanzari[i]) != 'none':
             assert get_pret(vanzari[i]) != get_pret(new_vanzari[i])

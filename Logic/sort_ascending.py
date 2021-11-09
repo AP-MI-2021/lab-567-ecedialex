@@ -14,7 +14,7 @@ def ascending_prices(vanzari):
     prices.sort()
     return prices
 
-def sort_ascending(vanzari):
+def sort_ascending(vanzari,undo_list,redo_list):
     """
     Lista cu vanzarile ordonate crescator dupa pret, pastrandu-si id-ul initial
     :param vanzari: lista vanzarilor
@@ -28,4 +28,6 @@ def sort_ascending(vanzari):
             if i<len(prices) and get_pret(vanzare) == prices[i]:
                 vanzari_ordonate.append(vanzare)
                 i+=1
+    undo_list.append(vanzari)
+    redo_list.clear()
     return vanzari_ordonate

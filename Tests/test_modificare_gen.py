@@ -14,7 +14,7 @@ def get_data():
 
 def test_modificare_gen():
     vanzari = get_data()
-    new_vanzari = modificare_gen(vanzari, 'Moara cu noroc', 'modificat')
+    new_vanzari = modificare_gen(vanzari, 'Moara cu noroc', 'modificat',[],[])
     for i in range(0, len(vanzari)):
         if get_titlu(vanzari[i]) == 'Moara cu noroc':
             assert get_gen(vanzari[i]) != get_gen(new_vanzari[i])
