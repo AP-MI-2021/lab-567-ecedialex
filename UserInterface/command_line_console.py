@@ -1,4 +1,4 @@
-from Domain.vanzare import get_str
+from Domain.vanzare import get_str, get_id
 from Logic.crud import create, delete
 def print_menu():
     print('Instructiunile sunt separate prin: [;] iar termenii prin: [,]')
@@ -6,6 +6,7 @@ def print_menu():
     print("Pentru a sterge o vanzare scrie: 'del','id'")
     print("Pentru a afisa toate vanzarile scrie: 'sa'")
     print("Pentru a inchide programul scrie: 'x'")
+
 def handle_add(vanzari,option):
     try:
         if len(option) == 6:

@@ -1,4 +1,7 @@
+from Domain.vanzare import get_pret, get_id
 from Logic.crud import create
+from Logic.discount import aplicare_discount
+from Logic.sort_ascending import sort_ascending
 from UserInterface.console import handle_undo, handle_redo
 
 
@@ -44,3 +47,16 @@ def test_undo_redo():
     assert len(vanzari) == 2
     vanzari = handle_redo(vanzari, undo_list, redo_list)
     assert len(vanzari) == 2
+    vanzari = aplicare_discount(vanzari,undo_list,redo_list)
+    vanzari = handle_undo(vanzari,undo_list,redo_list)
+    assert get_pret(vanzari[0]) == 15
+    assert get_pret(vanzari[1]) == 12
+    vanzari = sort_ascending(vanzari,undo_list,redo_list)
+    assert get_id(vanzari[0]) == 4
+    assert get_id(vanzari[1]) == 1
+    vanzari = handle_redo(vanzari,undo_list,redo_list)
+    assert get_id(vanzari[0]) == 4
+    assert get_id(vanzari[1]) == 1
+    vanzari = handle_undo(vanzari, undo_list, redo_list)
+    assert get_id(vanzari[0]) == 1
+    assert get_id(vanzari[1]) == 4

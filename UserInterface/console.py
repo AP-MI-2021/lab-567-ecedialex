@@ -2,7 +2,7 @@ from Domain.vanzare import get_str, creeaza_vanzare
 from Logic.crud import create, update, delete
 from Logic.discount import aplicare_discount
 from Logic.modificare_gen import modificare_gen
-from Logic.modify_min_price_each_genre import genres_list, min_price_by_genre
+from Logic.find_min_price_each_genre import genres_list, min_price_by_genre
 from Logic.sort_ascending import sort_ascending
 from Logic.titles_count_each_genre import distinct_titles
 from Logic.undo_redo import do_undo, do_redo
@@ -34,18 +34,14 @@ def show_crud_menu():
 def handle_add(vanzari, undo_list, redo_list):
     try:
         id_vanzare = int(input('Dati id-ul vanzarii:'))
-    except ValueError as error:
-        print('ID-ul introdus nu este un numar valid!', error)
-        id_vanzare = int(input('Dati id-ul vanzarii:'))
-    titlu = input('Dati titlul cartii din vanzare:')
-    gen = input('Dati genul cartii vandute:')
-    try:
+        titlu = input('Dati titlul cartii din vanzare:')
+        gen = input('Dati genul cartii vandute:')
         pret = float(input('Dati pretul vanzarii:'))
+        tip_client = input('Dati tipul de client:')
+        return create(vanzari, id_vanzare, titlu, gen, pret, tip_client, undo_list, redo_list)
     except ValueError as error:
-        print('Pretul introdus nu este valid!', error)
-        pret = float(input('Dati pretul vanzarii:'))
-    tip_client = input('Dati tipul de client:')
-    return create(vanzari, id_vanzare, titlu, gen, pret, tip_client, undo_list, redo_list)
+        print('Eroare:', error)
+
 
 
 def handle_show_all(vanzari):
@@ -76,11 +72,14 @@ def handle_delete(vanzari, undo_list, redo_list):
 
 
 def handle_modif_gen(vanzari, undo_list, redo_list):
-    titlu = input(f"Introduceti titlul cartii pentru care se va schimba genul:")
-    new_gen = input(f"Introduceti noul gen al cartii {titlu}:")
-    vanzari = modificare_gen(vanzari, titlu, new_gen, undo_list, redo_list)
-    return vanzari
 
+    try:
+        titlu = input(f"Introduceti titlul cartii pentru care se va schimba genul:")
+        new_gen = input(f"Introduceti noul gen al cartii {titlu}:")
+        vanzari = modificare_gen(vanzari, titlu, new_gen, undo_list, redo_list)
+        return vanzari
+    except ValueError as error:
+        print('Eroare: ',ve)
 
 def handle_crud(vanzari, undo_list, redo_list):
     while True:

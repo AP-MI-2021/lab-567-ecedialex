@@ -1,5 +1,5 @@
 from Domain.vanzare import creeaza_vanzare
-from Logic.modify_min_price_each_genre import genres_list, min_price_by_genre
+from Logic.find_min_price_each_genre import genres_list, min_price_by_genre
 
 
 def get_data():

@@ -1,5 +1,5 @@
 from Domain.vanzare import get_gen
-from Logic.modify_min_price_each_genre import genres_list
+from Logic.find_min_price_each_genre import genres_list
 from Tests.test_crud import get_data
 
 

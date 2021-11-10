@@ -2,8 +2,8 @@ from Domain.vanzare import creeaza_vanzare, get_id
 
 
 def create(lst_vanzari,
-           id_vanzare, titlu, gen, pret, tip_client,
-           undo_list,redo_list):
+           id_vanzare :int , titlu, gen, pret, tip_client,
+           undo_list :list ,redo_list : list):
     """
     Creeaza o lista de vanzari
     :param redo_list: lista redo
@@ -17,12 +17,9 @@ def create(lst_vanzari,
     :return: O noua lista formata din lst_vanzari si noua vanzare adaugata
     """
 
-
     vanzare = creeaza_vanzare(id_vanzare, titlu, gen, pret, tip_client)
-
     undo_list.append(lst_vanzari)
     redo_list.clear()
-
     return lst_vanzari + [vanzare]
 
 
@@ -33,6 +30,9 @@ def read(lst_vanzari, id_vanzare=None):
     :param id_vanzare: id-ul vanzarii
     :return: vanzara cu id-ul id_vanzare sau lista cu toate vanzarile daca id_vanzare=None
     """
+    vanzare_cu_id = None
+    if not id_vanzare:
+        return lst_vanzari
     vanzare_cu_id = None
     for vanzare in lst_vanzari:
         if get_id(vanzare) == id_vanzare:

@@ -1,5 +1,6 @@
 from Domain.vanzare import get_titlu, get_id, get_pret, get_reducere, creeaza_vanzare
-from Logic.crud import update
+from Logic.crud import update, read
+
 
 def modificare_gen(lst_vanzari,titlu,new_gen,
                    undo_list,redo_list):
@@ -13,12 +14,20 @@ def modificare_gen(lst_vanzari,titlu,new_gen,
     """
     undo_list.append(lst_vanzari)
     redo_list.clear()
+    ok=0
     for vanzare in lst_vanzari:
-        if get_titlu(vanzare) == titlu:
-            id=get_id(vanzare)
-            pret=get_pret(vanzare)
-            reducere= get_reducere(vanzare)
-            lst_vanzari=update(lst_vanzari,creeaza_vanzare(id,titlu,new_gen,pret,reducere),[],[])
+        t=get_titlu(vanzare)
+        if t == titlu:
+            ok=1
+    if ok ==0 :
+        print("Titlul dat nu exista in vanzari.")
+    else:
+        for vanzare in lst_vanzari:
+            if get_titlu(vanzare) == titlu:
+                id=get_id(vanzare)
+                pret=get_pret(vanzare)
+                reducere= get_reducere(vanzare)
+                lst_vanzari=update(lst_vanzari,creeaza_vanzare(id,titlu,new_gen,pret,reducere),[],[])
 
     return lst_vanzari
 

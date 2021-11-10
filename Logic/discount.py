@@ -1,46 +1,27 @@
-from Domain.vanzare import get_id, get_titlu, get_gen, get_reducere, creeaza_vanzare, get_pret
-from Logic.crud import update
+from Domain.vanzare import get_reducere, get_id, creeaza_vanzare, get_titlu, get_gen, get_pret
 
-def discount_silver(price):
-    """
-    Retruneaza pretul dupa o reducere de 5%
-    :param price: pretul initial
-    :return: pretul modificat
-    """
-    discount = price - (price*0.05)
-    return discount
+def aplicare_discount(vanzari,undo_list,redo_list):
+    new_vanzari=[]
+    for vanzare in vanzari:
+        if get_reducere(vanzare) == 'silver':
+            vanzare_noua=creeaza_vanzare(get_id(vanzare),
+                                         get_titlu(vanzare),
+                                         get_gen(vanzare),
+                                         get_pret(vanzare)-get_pret(vanzare)*0.05,
+                                         get_reducere(vanzare)
+                                         )
+            new_vanzari.append(vanzare_noua)
+        elif get_reducere(vanzare) == 'gold':
+            vanzare_noua=creeaza_vanzare(get_id(vanzare),
+                                         get_titlu(vanzare),
+                                         get_gen(vanzare),
+                                         get_pret(vanzare)-get_pret(vanzare)*0.10,
+                                         get_reducere(vanzare)
+                                         )
+            new_vanzari.append(vanzare_noua)
+        else:
+            new_vanzari.append(vanzare)
 
-def discount_gold(price):
-    """
-    Returneaza pretul dupa o reducere de 10%
-    :param price:  pretul initial
-    :return: pretul modificat
-    """
-    discount = price - (price*0.10)
-    return discount
-
-def aplicare_discount(lst_vanzari,
-                      undo_list,redo_list):
-    """
-    Modifica pretul vanzarilor dupa tipul de client
-    :param redo_list: lista undo
-    :param undo_list: lista redo
-    :param lst_vanzari: lista vanzarilor
-    :return: lista vanzarilor cu preturile actualizate dupa aplicarea reducerii
-    """
-    undo_list.append(lst_vanzari)
+    undo_list.append(vanzari)
     redo_list.clear()
-
-    for vanzare in lst_vanzari:
-        id=get_id(vanzare)
-        titlu=get_titlu(vanzare)
-        gen=get_gen(vanzare)
-        pret=get_pret(vanzare)
-        reducere=get_reducere(vanzare)
-
-        if reducere == 'silver':
-            lst_vanzari = update(lst_vanzari,creeaza_vanzare(id,titlu,gen,discount_silver(pret),reducere),[],[])
-        if reducere == 'gold':
-            lst_vanzari = update(lst_vanzari, creeaza_vanzare(id, titlu, gen, discount_gold(pret), reducere),[],[])
-
-    return lst_vanzari
+    return new_vanzari

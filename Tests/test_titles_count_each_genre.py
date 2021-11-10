@@ -1,4 +1,4 @@
-from Logic.modify_min_price_each_genre import genres_list
+from Logic.find_min_price_each_genre import genres_list
 from Logic.titles_count_each_genre import distinct_titles
 from Tests.test_crud import get_data
 
