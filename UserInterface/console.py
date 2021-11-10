@@ -121,8 +121,10 @@ def handle_min_price(vanzari):
 def handle_titluri_gen(vanzari):
     nt, g = distinct_titles(vanzari)
     for i in range(0, len(nt)):
-        print(f'Genul {g[i]} are {nt[i]} titluri.')
-
+        if nt[i] != 1:
+            print(f'Genul {g[i]} are {nt[i]} titluri.')
+        else:
+            print(f'Genul {g[i]} are {nt[i]} titlu.')
 
 def handle_undo(vanzari, undo_list, redo_list):
     undo_result = do_undo(undo_list, redo_list, vanzari)
