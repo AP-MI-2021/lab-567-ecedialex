@@ -79,7 +79,7 @@ def handle_modif_gen(vanzari, undo_list, redo_list):
         vanzari = modificare_gen(vanzari, titlu, new_gen, undo_list, redo_list)
         return vanzari
     except ValueError as error:
-        print('Eroare: ',ve)
+        print('Eroare: ',error)
 
 def handle_crud(vanzari, undo_list, redo_list):
     while True:
