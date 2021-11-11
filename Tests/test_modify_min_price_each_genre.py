@@ -9,7 +9,6 @@ def get_data():
         creeaza_vanzare(3, 'Mara', 'Roman', 30, 'gold'),
         creeaza_vanzare(4, 'Enigma Otiliei', 'Roman', 50, 'silver'),
         creeaza_vanzare(5, 'Baltagul', 'Roman', 5, 'gold'),
-        creeaza_vanzare(6, 'Norocul', 'Nuvela', 7, 'none'),
     ]
 
 def test_modify_min_price_each_genre():
@@ -17,5 +16,5 @@ def test_modify_min_price_each_genre():
     lista_genuri=genres_list(vanzari)
     preturi_minime_fiecare_gen=min_price_by_genre(vanzari)
     assert preturi_minime_fiecare_gen[0] == 10
-    assert preturi_minime_fiecare_gen[1] == 7
+    assert preturi_minime_fiecare_gen[1] == 25
     assert preturi_minime_fiecare_gen[2] == 5

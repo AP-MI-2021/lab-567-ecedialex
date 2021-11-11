@@ -7,30 +7,26 @@ def print_menu():
     print("Pentru a afisa toate vanzarile scrie: 'sa'")
     print("Pentru a inchide programul scrie: 'x'")
 
-def handle_add(vanzari,option):
+def handle_add(vanzari,option,undo_list,redo_list):
     try:
-        if len(option) == 6:
-            id=int(option[1])
-            titlu=option[2]
-            gen=option[3]
-            pret=int(option[4])
-            reducere=option[5]
-            return create(vanzari,id,titlu,gen,pret,reducere)
-        else:
-            print("Eroare!")
+        print(option)
+        id=int(option[1])
+        titlu=option[2]
+        gen=option[3]
+        pret=float(option[4])
+        reducere=option[5]
+        return create(vanzari,id,titlu,gen,pret,reducere,undo_list,redo_list)
     except ValueError as eroare:
-        print('Eroare',eroare)
-def handle_delete(vanzari,option):
+        print('Eroare: ',eroare)
+
+def handle_delete(vanzari,option,undo_list,redo_list):
     try:
-        if len(option) == 2:
             id=int(option[1])
-            vanzari=delete(vanzari,id)
+            vanzari=delete(vanzari,id,undo_list,redo_list)
             return vanzari
-        else:
-            print("Eroare!")
     except ValueError as eroare:
-        print('Eroare ',eroare)
-def handle_show_all(vanzari,option):
+        print('Eroare: ',eroare)
+def handle_show_all(vanzari):
     for vanzare in vanzari:
         print(get_str(vanzare))
 def clc(vanzari):
@@ -38,16 +34,18 @@ def clc(vanzari):
         while True:
             print_menu()
             lista=input()
+            undo_list=[]
+            redo_list=[]
             comenzi=lista.split(';')
             for comanda in comenzi:
                 param=comanda.split(',')
-                if param[0] == 'sa':
-                    handle_show_all(vanzari,comanda)
-                elif param[0] == 'del':
-                    vanzari = handle_delete(vanzari,param)
-                elif param[0] == 'x':
+                if param[0] == 'sa' and len(param) == 1:
+                    handle_show_all(vanzari)
+                elif param[0] == 'del' and len(param) == 2:
+                    vanzari = handle_delete(vanzari,param,undo_list,redo_list)
+                elif param[0] == 'x' and len(param) == 1:
                     return 0,print("Program inchis")
-                elif param[0] == 'add':
-                    vanzari = handle_add(vanzari,param)
+                elif param[0] == 'add' and len(param) == 6:
+                    vanzari = handle_add(vanzari,param,undo_list,redo_list)
                 else:
                     print("Optiune invalida.")

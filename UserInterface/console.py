@@ -42,12 +42,9 @@ def handle_add(vanzari, undo_list, redo_list):
     except ValueError as error:
         print('Eroare:', error)
 
-
-
 def handle_show_all(vanzari):
     for vanzare in vanzari:
         print(get_str(vanzare))
-
 
 def handle_update(vanzari, undo_list, redo_list):
     try:
@@ -68,7 +65,7 @@ def handle_delete(vanzari, undo_list, redo_list):
         print('Stergerea a fost efectuata cu succes.')
         return vanzari
     except ValueError as error:
-        print('Eroare!', error)
+        print('Eroare: ', error)
 
 
 def handle_modif_gen(vanzari, undo_list, redo_list):
