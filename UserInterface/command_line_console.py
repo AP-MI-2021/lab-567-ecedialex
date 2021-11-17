@@ -26,6 +26,7 @@ def handle_delete(vanzari,option,undo_list,redo_list):
             return vanzari
     except ValueError as eroare:
         print('Eroare: ',eroare)
+    return vanzari
 def handle_show_all(vanzari):
     for vanzare in vanzari:
         print(get_str(vanzare))
